@@ -12,10 +12,10 @@ sudo apt -y install hostapd bridge-utils
 
 # disable dhcp client and wpa_supplicant for the wireless interface
 # disable dhcp for eth0, use bridge instead
-sudo echo 'denyinterfaces wlan0 br0' >> /etc/dhcpcd.conf
+sudo printf '\ndenyinterfaces wlan0 br0\n' | sudo tee -a /etc/dhcpcd.conf
 
 # use AP configuration at this path
-sudo echo 'DAEMON_CONF="/etc/hostapd/hostapd.conf"' >> /etc/default/hostapd
+sudo printf '\nDAEMON_CONF="/etc/hostapd/hostapd.conf"\n' | sudo tee -a /etc/default/hostapd
 # copy the actual configuration to destination
 sudo cp hostapd.conf /etc/hostapd/hostapd.conf
 
